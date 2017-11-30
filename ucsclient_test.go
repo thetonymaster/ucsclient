@@ -11,7 +11,7 @@ import (
 	"testing"
 
 	utils "github.com/ContainerSolutions/go-utils"
-	"github.com/DigitalOnUs/ucsclient/fixtures"
+	"github.com/thetonymaster/ucsclient/fixtures"
 )
 
 type StubHTTPClient struct {

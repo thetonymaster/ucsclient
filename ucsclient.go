@@ -14,7 +14,7 @@ import (
 	"os"
 	"strings"
 
-	ucs "github.com/DigitalOnUS/ucsclient/ucsinternal"
+	ucs "github.com/thetonymaster/ucsclient/ucsinternal"
 	xmlpath "gopkg.in/xmlpath.v2"
 )
 
