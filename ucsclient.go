@@ -210,8 +210,8 @@ func (c *UCSClient) CreateServiceProfile(sp *ServiceProfile) error {
 		return err
 	}
 
-	if res.Response != "yes" && res.OutConfigs.ServerConfig.Status != "created" {
-		return fmt.Errorf("Response: %s, Status: %s", res.Response, res.OutConfigs.ServerConfig.Status)
+	if res.Response == "yes" && res.OutConfigs.ServerConfig.Status != "created" {
+		return fmt.Errorf("Response: %s, Error code: %d, Error: %s", res.Response, res.ErrorCode, res.ErrorDescr)
 	}
 
 	return nil
