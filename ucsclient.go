@@ -194,27 +194,27 @@ func (c *UCSClient) Logout() {
 // Performs a POST request to the UCS server to create a service profile.
 // Returns bool to indicate wether or not the resource could be created,
 // along with an error if anything went wrong.
-func (c *UCSClient) CreateServiceProfile(sp *ServiceProfile) (bool, error) {
+func (c *UCSClient) CreateServiceProfile(sp *ServiceProfile) error {
 	payload, err := sp.Marshal(c.cookie)
 	if err != nil {
-		return false, err
+		return err
 	}
 
 	data, err := c.Post(payload)
 	if err != nil {
-		return false, err
+		return err
 	}
 
 	res, err := ucs.NewServiceProfileResponse(data)
 	if err != nil {
-		return false, err
+		return err
 	}
 
-	if res.Response == "yes" && res.OutConfigs.ServerConfig.Status == "created" {
-		return true, nil
+	if res.Response != "yes" && res.OutConfigs.ServerConfig.Status != "created" {
+		return fmt.Errorf("Response: %s, Status: %s", res.Response, res.OutConfigs.ServerConfig.Status)
 	}
 
-	return false, nil
+	return nil
 }
 
 // Determines if the UCSClient is logged into the server by

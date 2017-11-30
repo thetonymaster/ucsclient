@@ -294,13 +294,9 @@ func TestCreateServiceProfile(t *testing.T) {
 		TargetOrg:    "org-root",
 		Hierarchical: false,
 	}
-	created, err := ucsClient.CreateServiceProfile(sp)
+	err = ucsClient.CreateServiceProfile(sp)
 	if err != nil {
 		t.Error(err)
-	}
-
-	if !created {
-		t.Error("expected true but got false")
 	}
 }
 
